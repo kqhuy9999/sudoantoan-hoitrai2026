@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sư Đoàn Toán - Giới Thiệu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffd700;
+            --bg-dark: #0a0a0a;
+            --text-light: #ffffff;
+            --curtain-color: #a00000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: var(--bg-dark);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+        }
+
+        .stg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .stg.active {
+            display: flex;
+        }
+
+        #stg1 {
+            background: url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        #fw-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        #stg2 {
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            flex-direction: column;
+        }
+
+        .logo-box {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            margin-bottom: 30px;
+            font-size: 80px;
+            color: #000;
+            animation: pop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+        }
+
+        .title-txt {
+            font-size: 4rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-align: center;
+            background: linear-gradient(45deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes pop {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Curtain Design */
+        .curtain {
+            position: fixed;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: var(--curtain-color);
+            background-image: repeating-linear-gradient(to right, transparent, transparent 40px, rgba(0,0,0,0.2) 45px, rgba(0,0,0,0.2) 50px);
+            z-index: 100;
+            transition: transform 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+        }
+
+        .curtain::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--primary);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+        }
+
+        .c-left { left: 0; transform: translateX(-100%); }
+        .c-right { right: 0; transform: translateX(100%); }
+
+        .curtain.close { transform: translateX(0); }
+
+        #stg3 {
+            background: #050505;
+        }
+
+        .vid-frame {
+            position: relative;
+            width: 85%;
+            height: 80%;
+            border: 10px double var(--primary);
+            padding: 15px;
+            background: #111;
+            box-shadow: 0 0 100px rgba(255, 215, 0, 0.2);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .overlay-start {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .start-btn {
+            padding: 20px 40px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover { background: var(--primary); color: #000; }
+    </style>
+</head>
+<body>
+
+    <div id="start-screen" class="overlay-start">
+        <div class="start-btn">Khám phá Sư Đoàn Toán</div>
+    </div>
+
+    <div id="stg1" class="stg">
+        <canvas id="fw-canvas"></canvas>
+    </div>
+
+    <div id="stg2" class="stg">
+        <div class="logo-box">Σ</div>
+        <h1 class="title-txt">SƯ ĐOÀN TOÁN</h1>
+    </div>
+
+    <div id="stg3" class="stg">
+        <div class="vid-frame">
+            <iframe id="yt-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="curtain c-left" id="cl"></div>
+    <div class="curtain c-right" id="cr"></div>
+
+    <audio id="bg-msc" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const cv = document.getElementById('fw-canvas');
+        const ct = cv.getContext('2d');
+        let fws = [];
+        const msc = document.getElementById('bg-msc');
+        const start = document.getElementById('start-screen');
+
+        function resize() {
+            cv.width = window.innerWidth;
+            cv.height = window.innerHeight;
+        }
+
+        class FW {
+            constructor() {
+                this.x = Math.random() * cv.width;
+                this.y = cv.height;
+                this.ty = Math.random() * (cv.height / 2);
+                this.v = 4 + Math.random() * 3;
+                this.pts = [];
+                this.done = false;
+                this.clr = `hsl(${Math.random() * 360}, 100%, 60%)`;
+            }
+            update() {
+                if (this.y > this.ty) this.y -= this.v;
+                else {
+                    if (this.pts.length === 0) {
+                        for(let i=0; i<60; i++) this.pts.push(new PT(this.x, this.y, this.clr));
+                    }
+                    this.pts.forEach(p => p.up());
+                    if (this.pts.every(p => p.a <= 0)) this.done = true;
+                }
+            }
+            draw() {
+                if (this.y > this.ty) {
+                    ct.fillStyle = '#fff';
+                    ct.fillRect(this.x, this.y, 3, 3);
+                } else this.pts.forEach(p => p.dr());
+            }
+        }
+
+        class PT {
+            constructor(x, y, c) {
+                this.x = x; this.y = y; this.c = c;
+                let ang = Math.random() * Math.PI * 2;
+                let spd = Math.random() * 6;
+                this.vx = Math.cos(ang) * spd;
+                this.vy = Math.sin(ang) * spd;
+                this.a = 1;
+            }
+            up() { this.x += this.vx; this.y += this.vy; this.vy += 0.05; this.a -= 0.015; }
+            dr() {
+                ct.globalAlpha = this.a;
+                ct.fillStyle = this.c;
+                ct.beginPath(); ct.arc(this.x, this.y, 2, 0, Math.PI * 2); ct.fill();
+                ct.globalAlpha = 1;
+            }
+        }
+
+        function loop() {
+            ct.fillStyle = 'rgba(0,0,0,0.2)';
+            ct.fillRect(0,0,cv.width, cv.height);
+            if(Math.random() < 0.06) fws.push(new FW());
+            fws.forEach((f, i) => { f.update(); f.draw(); if(f.done) fws.splice(i, 1); });
+            requestAnimationFrame(loop);
+        }
+
+        function autoFlow() {
+            document.getElementById('stg1').classList.add('active');
+            
+            setTimeout(() => {
+                document.getElementById('stg1').classList.remove('active');
+                document.getElementById('stg2').classList.add('active');
+                
+                setTimeout(() => {
+                    document.getElementById('cl').classList.add('close');
+                    document.getElementById('cr').classList.add('close');
+                    
+                    setTimeout(() => {
+                        msc.pause();
+                        document.getElementById('stg2').classList.remove('active');
+                        document.getElementById('stg3').classList.add('active');
+                        document.getElementById('yt-player').src = "https://youtu.be/dQw4w9WgXcQ?si=sRdbfcLY7j1pKNu9";
+                        
+                        setTimeout(() => {
+                            document.getElementById('cl').classList.remove('close');
+                            document.getElementById('cr').classList.remove('close');
+                        }, 500);
+                    }, 1000); // Rút ngắn xuống 1s
+                }, 5000);
+            }, 5000);
+        }
+
+        start.onclick = () => {
+            start.style.display = 'none';
+            msc.play();
+            autoFlow();
+        };
+
+        window.onresize = resize;
+        resize();
+        loop();
+    </script>
+</body>
+</html>
