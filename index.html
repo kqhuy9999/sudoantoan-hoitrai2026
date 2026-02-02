@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sư Đoàn Toán - Giới Thiệu</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <style>
@@ -25,6 +25,20 @@
             background: var(--bg-light);
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
+            width: 100vw;
+            height: 100vh;
+        }
+
+        @media screen and (max-width: 900px) and (orientation: portrait) {
+            body {
+                width: 100vh;
+                height: 100vw;
+                transform: rotate(90deg);
+                transform-origin: bottom left;
+                position: absolute;
+                top: -100vw;
+                left: 0;
+            }
         }
 
         .stg {
@@ -44,7 +58,7 @@
         }
 
         #stg1 {
-            background: url('https://raw.githubusercontent.com/kqhuy9999/sudoantoan-hoitrai2026/refs/heads/main/background_stage1.png') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1498936178812-4b2e558d2937?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
         }
 
         #fw-canvas {
@@ -60,18 +74,18 @@
         }
 
         .logo-box {
-            width: 160px;
-            height: 160px;
+            width: 120px;
+            height: 120px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 15px 40px rgba(241, 196, 15, 0.6);
-            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(241, 196, 15, 0.6);
+            margin-bottom: 20px;
             animation: pop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             opacity: 0;
-            border: 5px solid #fff;
+            border: 4px solid #fff;
             overflow: hidden;
         }
 
@@ -82,7 +96,7 @@
         }
 
         .title-txt {
-            font-size: 4.5rem;
+            font-size: 3rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             text-align: center;
@@ -93,6 +107,11 @@
             opacity: 0;
             transform: translateY(30px);
             animation: slideUp 1s ease-out 0.5s forwards;
+        }
+
+        @media (min-width: 1024px) {
+            .logo-box { width: 160px; height: 160px; }
+            .title-txt { font-size: 4.5rem; }
         }
 
         @keyframes pop {
@@ -124,20 +143,24 @@
 
         .vid-frame {
             position: relative;
-            width: 85%;
-            height: 80%;
-            border: 12px solid var(--primary);
-            border-radius: 24px;
-            padding: 10px;
+            width: 90%;
+            height: 85%;
+            border: 8px solid var(--primary);
+            border-radius: 16px;
+            padding: 5px;
             background: #fff;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .vid-frame { width: 85%; height: 80%; border-width: 12px; border-radius: 24px; padding: 10px; }
         }
 
         iframe {
             width: 100%;
             height: 100%;
-            border-radius: 12px;
+            border-radius: 8px;
             border: none;
         }
 
@@ -153,10 +176,10 @@
         }
 
         .start-btn {
-            padding: 25px 60px;
+            padding: 20px 40px;
             background: var(--primary);
             color: #fff;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             border-radius: 50px;
             text-transform: uppercase;
             font-weight: 900;
@@ -168,7 +191,7 @@
 <body>
 
     <div id="start-screen" class="overlay-start">
-        <div class="start-btn">CHÀO MỪNG ĐẾN VỚI SƯ ĐOÀN TOÁN</div>
+        <div class="start-btn">Bắt Đầu Trải Nghiệm</div>
     </div>
 
     <div id="stg1" class="stg">
@@ -177,8 +200,7 @@
 
     <div id="stg2" class="stg">
         <div class="logo-box">
-            <!-- Thay link ảnh logo vào src bên dưới -->
-            <img src="https://scontent-hkg1-2.xx.fbcdn.net/v/t39.30808-6/402059592_363788046171488_5615794529042263578_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHu-YOpKZ2hTHLCJqwq-RixGK7zoznPB1IYrvOjOc8HUiDzeAZrBPE_dDlxPBO5o1S03mOAXl-0sa9pnBzYwx4g&_nc_ohc=8XsMBa1mt3YQ7kNvwG9urE1&_nc_oc=AdmkD-HqHBtHYZAhXFRhU90AyptUsdwbsBwmtN7e8z_rlwbf6omuyQkOQ-au0QSKRBVhLCoBB-kQok47fhKP4Lza&_nc_zt=23&_nc_ht=scontent-hkg1-2.xx&_nc_gid=K4-2hh713X5GDDI1C6q2Yw&oh=00_AfsUmXa2x4lMGjSh4dSQAyWvaGsTaE2ufQ7S6vn17FWY-w&oe=69867EFD" alt="Logo Sư Đoàn Toán">
+            <img src="https://via.placeholder.com/160" alt="Logo Sư Đoàn Toán">
         </div>
         <h1 class="title-txt">SƯ ĐOÀN TOÁN</h1>
     </div>
@@ -206,6 +228,10 @@
         function resize() {
             cv.width = window.innerWidth;
             cv.height = window.innerHeight;
+            if (window.innerWidth < window.innerHeight && window.innerWidth < 900) {
+                cv.width = window.innerHeight;
+                cv.height = window.innerWidth;
+            }
         }
 
         class FW {
@@ -265,6 +291,7 @@
         function autoFlow() {
             document.getElementById('stg1').classList.add('active');
             
+            // Chuyển sang Stage 2 sau 5s + 0.75s = 5750ms
             setTimeout(() => {
                 document.getElementById('stg1').classList.remove('active');
                 document.getElementById('stg2').classList.add('active');
@@ -285,7 +312,7 @@
                         }, 500);
                     }, 1000); 
                 }, 5000);
-            }, 5000);
+            }, 5750);
         }
 
         start.onclick = () => {
